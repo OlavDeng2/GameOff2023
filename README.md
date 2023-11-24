@@ -9,6 +9,9 @@ Google Drive: https://drive.google.com/drive/folders/1oXnVfOZdAFGwr9LHkPdLKOGBr_
 
 ## Credits
 Alice Ursu
+
 Dagmar Dijk
-Stephan Tiggleman
+
+Stephan Tiggelman
+
 Bjoern Olav Kruithof
