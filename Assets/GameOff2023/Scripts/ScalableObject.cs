@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class ScalableObject : MonoBehaviour
 {
+    [HideInInspector]
+    public bool canGrow = true;
     public enum Scale { Small, Medium, Big};
 
     [SerializeField]
@@ -32,6 +34,7 @@ public class ScalableObject : MonoBehaviour
 
     public virtual void Shrink()
     {
+        
         switch (currentScale)
         {
             case Scale.Big:
@@ -50,6 +53,9 @@ public class ScalableObject : MonoBehaviour
 
     public virtual void Grow()
     {
+        //TODO: Give player some feedback about not being able to grow in size in this area
+        if (!canGrow) return;
+
         switch (currentScale)
         {
             case Scale.Small:
