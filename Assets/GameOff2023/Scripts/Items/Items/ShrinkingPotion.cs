@@ -38,5 +38,14 @@ public class ShrinkingPotion : GrababbleItem, IUsableItem
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        ScalableObject otherObject = collision.gameObject.GetComponent<ScalableObject>();
+        if (otherObject == null) return;
+
+        otherObject.Shrink();
+        Destroy(this.gameObject);
+    }
+
 
 }

@@ -39,4 +39,14 @@ public class EnlargingPotion : GrababbleItem, IUsableItem
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        ScalableObject otherObject = collision.gameObject.GetComponent<ScalableObject>();
+        if (otherObject == null) return;
+
+        otherObject.Grow();
+        Destroy(this.gameObject);
+    }
+
+
 }
