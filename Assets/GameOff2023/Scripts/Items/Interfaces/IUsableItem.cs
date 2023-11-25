@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface  IUsableItem
 {
-    void Use();
+    void Use(GameObject usingObject);
 }

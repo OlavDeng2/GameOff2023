@@ -5,12 +5,14 @@ using UnityEngine.InputSystem;
 public class Inventory : MonoBehaviour
 {
     [SerializeField]
+    private GameObject owningPlayer;
+    [SerializeField]
     private InputActionReference grabAction, useAction, throwAction;
 
     [SerializeField]
     private Transform itemPosition;
 
-    private IGrabbableItem heldItem = null;
+    private GrababbleItem heldItem = null;
     private Item currentlyLookingAt;
     [SerializeField]
     private float grabDistance = 1.0f; //Should grab distance change based on size?
@@ -46,7 +48,7 @@ public class Inventory : MonoBehaviour
             if (currentlyLookingAt != null)
             {
                 //if Item, check if grabable or usable.
-                if(currentlyLookingAt as IGrabbableItem != null)
+                if(currentlyLookingAt as GrababbleItem != null)
                 {
                     //Is Grabable
                     //TODO: Show UI that you can grab item
@@ -70,7 +72,7 @@ public class Inventory : MonoBehaviour
             usableItem = heldItem as IUsableItem;
             if(heldItem as IUsableItem != null)
             {
-                usableItem.Use();
+                usableItem.Use(owningPlayer);
             }
         }
 
@@ -79,7 +81,7 @@ public class Inventory : MonoBehaviour
             usableItem = currentlyLookingAt as IUsableItem;
             if(usableItem != null)
             {
-                usableItem.Use();
+                usableItem.Use(owningPlayer);
             }
 
 
@@ -96,13 +98,12 @@ public class Inventory : MonoBehaviour
 
         else if(heldItem == null)
         {
-            if(currentlyLookingAt is IGrabbableItem)
+            if(currentlyLookingAt is GrababbleItem)
             {
                 //Grab item currently being raycasted at
-                IGrabbableItem grabbingItem = currentlyLookingAt as IGrabbableItem;
+                GrababbleItem grabbingItem = currentlyLookingAt as GrababbleItem;
                 grabbingItem.Grab(itemPosition);
                 heldItem = grabbingItem;
-                //TODO: Have the item visible infront
             }
         }
     }
