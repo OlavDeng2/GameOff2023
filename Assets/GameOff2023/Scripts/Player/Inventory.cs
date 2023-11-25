@@ -4,15 +4,27 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Inventory : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField]
     private GameObject owningPlayer;
     private ScalableObject playerScale;
+    [Header("UI")]
+    [SerializeField]
+    private GameObject useItemImage;
+    [SerializeField]
+    private GameObject throwItemImage;
+    [SerializeField]
+    private GameObject grabItemImage;
+
+
+    [Header("Input")]
     [SerializeField]
     private InputActionReference grabAction, useAction, throwAction;
 
+
+    [Header("Settings")]
     [SerializeField]
     private Transform itemPosition;
-
     private GrababbleItem heldItem = null;
     private Item currentlyLookingAt;
     [SerializeField]
@@ -40,11 +52,16 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         playerScale = owningPlayer.GetComponent<ScalableObject>();
+        grabItemImage.SetActive(false);
+        useItemImage.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //No point in looking for items or to show UI to grab/use items if there is already a held item
+        if (heldItem != null) return;
+
         RaycastHit hit;
         //Raycast out if item
         if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, grabDistance, grabLayers))
@@ -53,19 +70,36 @@ public class Inventory : MonoBehaviour
 
             if (currentlyLookingAt != null)
             {
+                Debug.Log("Currently looking at item");
                 //if Item, check if grabable or usable.
                 if(currentlyLookingAt as GrababbleItem != null)
                 {
                     //Is Grabable
-                    //TODO: Show UI that you can grab item
+                    grabItemImage.SetActive(true);
                 }
-                if(currentlyLookingAt as IUsableItem != null)
+                else
+                {
+                    grabItemImage.SetActive(false);
+                }
+                if (currentlyLookingAt as IUsableItem != null)
                 {
                     //Is Usable
-                    //TODO: Show UI that you can use item
+                    useItemImage.SetActive(true);
+                }
+                else
+                {
+                    useItemImage.SetActive(false);
                 }
                 
             }
+
+            
+        }
+        else
+        {
+            Debug.Log("No longer looking at item");
+            useItemImage.SetActive(false);
+            grabItemImage.SetActive(false);
         }
 
     }
@@ -100,6 +134,9 @@ public class Inventory : MonoBehaviour
         {
             heldItem.Drop();
             heldItem = null;
+
+            throwItemImage.SetActive(false);
+            useItemImage.SetActive(false);
         }
 
         //TODO: Unnest these if statements a bit, its very messy
@@ -107,8 +144,22 @@ public class Inventory : MonoBehaviour
         {
             if(currentlyLookingAt is GrababbleItem)
             {
+                
+
+
                 //Grab item currently being raycasted at
                 GrababbleItem grabbingItem = currentlyLookingAt as GrababbleItem;
+
+                //Hide grab item UI
+                grabItemImage.SetActive(false);
+                //Show UI that you can throw item
+                throwItemImage.SetActive(true);
+                //show UI that you can use item
+                if(grabbingItem as IUsableItem != null)
+                {
+                    useItemImage.SetActive(true);
+                }
+
 
                 //Get current scale of grabable item. Get current scale of player
                 //Check if player is allowed to grab item at that scale
@@ -162,5 +213,8 @@ public class Inventory : MonoBehaviour
 
         heldItem.Throw();
         heldItem = null;
+
+        throwItemImage.SetActive(false);
+        useItemImage.SetActive(false);
     }
 }
