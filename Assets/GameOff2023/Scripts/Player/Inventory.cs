@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Audio;
 public class Inventory : MonoBehaviour
 {
     [Header("References")]
@@ -15,6 +16,22 @@ public class Inventory : MonoBehaviour
     private GameObject throwItemImage;
     [SerializeField]
     private GameObject grabItemImage;
+
+    //TODO: Move the audio to the correct place (use, throw, grab and drop should be done in the Item)
+    //Fail grab sound will remain part of the inventory
+    [Header("Audio")]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip useSound;
+    [SerializeField]
+    private AudioClip throwSound;
+    [SerializeField]
+    private AudioClip grabSound;
+    [SerializeField]
+    private AudioClip failGrabSound;
+    [SerializeField]
+    private AudioClip dropSound;
+
 
 
     [Header("Input")]
@@ -54,6 +71,7 @@ public class Inventory : MonoBehaviour
         playerScale = owningPlayer.GetComponent<ScalableObject>();
         grabItemImage.SetActive(false);
         useItemImage.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -113,6 +131,8 @@ public class Inventory : MonoBehaviour
             if(heldItem as IUsableItem != null)
             {
                 usableItem.Use(owningPlayer);
+                audioSource.PlayOneShot(useSound);
+
             }
         }
 
@@ -122,6 +142,8 @@ public class Inventory : MonoBehaviour
             if(usableItem != null)
             {
                 usableItem.Use(owningPlayer);
+                audioSource.PlayOneShot(useSound);
+
             }
 
 
@@ -137,6 +159,8 @@ public class Inventory : MonoBehaviour
 
             throwItemImage.SetActive(false);
             useItemImage.SetActive(false);
+            audioSource.PlayOneShot(dropSound);
+
         }
 
         //TODO: Unnest these if statements a bit, its very messy
@@ -144,8 +168,6 @@ public class Inventory : MonoBehaviour
         {
             if(currentlyLookingAt is GrababbleItem)
             {
-                
-
 
                 //Grab item currently being raycasted at
                 GrababbleItem grabbingItem = currentlyLookingAt as GrababbleItem;
@@ -173,6 +195,8 @@ public class Inventory : MonoBehaviour
                             {
                                 grabbingItem.Grab(itemPosition);
                                 heldItem = grabbingItem;
+                                audioSource.PlayOneShot(grabSound);
+
                             }
                             break;
                         case ScalableObject.Scale.Medium:
@@ -180,6 +204,8 @@ public class Inventory : MonoBehaviour
                             {
                                 grabbingItem.Grab(itemPosition);
                                 heldItem = grabbingItem;
+                                audioSource.PlayOneShot(grabSound);
+
                             }
                             break;
                         case ScalableObject.Scale.Big:
@@ -187,7 +213,12 @@ public class Inventory : MonoBehaviour
                             {
                                 grabbingItem.Grab(itemPosition);
                                 heldItem = grabbingItem;
+                                audioSource.PlayOneShot(grabSound);
+
                             }
+                            break;
+                        default:
+                            audioSource.PlayOneShot(failGrabSound);
                             break;
                     }
                 }
@@ -200,6 +231,8 @@ public class Inventory : MonoBehaviour
                     {
                         grabbingItem.Grab(itemPosition);
                         heldItem = grabbingItem;
+                        audioSource.PlayOneShot(grabSound);
+
                     }
                 }
 
@@ -216,5 +249,7 @@ public class Inventory : MonoBehaviour
 
         throwItemImage.SetActive(false);
         useItemImage.SetActive(false);
+        audioSource.PlayOneShot(throwSound);
+
     }
 }

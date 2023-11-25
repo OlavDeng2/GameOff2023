@@ -1543,6 +1543,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9103750966960990896, guid: 29cf1b4c9be7f804bb5d67594490d6db,
+        type: 3}
+      propertyPath: useSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6d5d43fab613b0c4cb106fb2be2bf6e6, type: 3}
+    - target: {fileID: 9103750966960990896, guid: 29cf1b4c9be7f804bb5d67594490d6db,
+        type: 3}
+      propertyPath: dropSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b503025a06b67654d88cf3ed2c2804d8, type: 3}
+    - target: {fileID: 9103750966960990896, guid: 29cf1b4c9be7f804bb5d67594490d6db,
+        type: 3}
+      propertyPath: grabSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 26cb45143d0d3c148900cc25c7eaed60, type: 3}
+    - target: {fileID: 9103750966960990896, guid: 29cf1b4c9be7f804bb5d67594490d6db,
+        type: 3}
+      propertyPath: throwSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 47427a2aca4cb384bab3f41a61fdc07b, type: 3}
+    - target: {fileID: 9103750966960990896, guid: 29cf1b4c9be7f804bb5d67594490d6db,
+        type: 3}
+      propertyPath: failGrabSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 31e916a002aa6954cb539a8c91ee98f8, type: 3}
     - target: {fileID: 9206671139157838355, guid: 29cf1b4c9be7f804bb5d67594490d6db,
         type: 3}
       propertyPath: m_Name
