@@ -34,7 +34,7 @@ public class MenuManager : MonoBehaviour
 
     public void OpenLevel(string levelToOpen)
     {
-        SceneManager.LoadSceneAsync(levelToOpen);
+        LevelManager.levelManager.LoadLevel(levelToOpen);
     }
 
     public void QuitGame()
