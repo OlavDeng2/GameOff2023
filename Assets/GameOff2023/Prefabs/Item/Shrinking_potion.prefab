@@ -47,7 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9580a76ef253efb49b7c56e22aa997bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwForce: 1000
+  playerSizeToHoldSmall: 0
+  playerSizeToHoldMedium: 0
+  playerSizeToHoldBig: 0
+  throwForce: 200
 --- !u!65 &2936427029029375046
 BoxCollider:
   m_ObjectHideFlags: 0

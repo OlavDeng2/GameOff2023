@@ -6,6 +6,13 @@ using UnityEngine;
 public class GrababbleItem : Item
 {
 
+    public enum PlayerSizeToHold { Small, Medium, Big, NotPossible };
+
+    //left: size of object, Right: minimum Size of player
+    public PlayerSizeToHold playerSizeToHoldSmall = PlayerSizeToHold.Small;
+    public PlayerSizeToHold playerSizeToHoldMedium = PlayerSizeToHold.Medium;
+    public PlayerSizeToHold playerSizeToHoldBig = PlayerSizeToHold.Big;
+
     [SerializeField]
     private float throwForce;
     private Collider collider;
@@ -32,9 +39,6 @@ public class GrababbleItem : Item
 
         collider.enabled = false;
         rigidbody.isKinematic = true;
-
-        Debug.Log("Grabbed item");
-
     }
 
     virtual public void Drop()
@@ -42,8 +46,6 @@ public class GrababbleItem : Item
         this.transform.parent = null;
         collider.enabled = true;
         rigidbody.isKinematic = false;
-
-        Debug.Log("Dropped item");
     }
 
     virtual public void Use(GameObject usingObject)

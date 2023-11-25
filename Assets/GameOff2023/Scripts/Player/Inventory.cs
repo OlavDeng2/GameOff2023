@@ -6,6 +6,7 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField]
     private GameObject owningPlayer;
+    private ScalableObject playerScale;
     [SerializeField]
     private InputActionReference grabAction, useAction, throwAction;
 
@@ -34,6 +35,11 @@ public class Inventory : MonoBehaviour
         useAction.action.performed -= UseItem;
         throwAction.action.performed -= ThrowItem;
 
+    }
+
+    private void Start()
+    {
+        playerScale = owningPlayer.GetComponent<ScalableObject>();
     }
 
     // Update is called once per frame
@@ -96,14 +102,56 @@ public class Inventory : MonoBehaviour
             heldItem = null;
         }
 
+        //TODO: Unnest these if statements a bit, its very messy
         else if(heldItem == null)
         {
             if(currentlyLookingAt is GrababbleItem)
             {
                 //Grab item currently being raycasted at
                 GrababbleItem grabbingItem = currentlyLookingAt as GrababbleItem;
-                grabbingItem.Grab(itemPosition);
-                heldItem = grabbingItem;
+
+                //Get current scale of grabable item. Get current scale of player
+                //Check if player is allowed to grab item at that scale
+                ScalableObject itemScaler = grabbingItem.GetComponent<ScalableObject>();
+                if(itemScaler != null)
+                {
+                    switch (itemScaler.currentScale)
+                    {
+                        case ScalableObject.Scale.Small:
+                            if ((int)playerScale.currentScale >= (int)grabbingItem.playerSizeToHoldSmall)
+                            {
+                                grabbingItem.Grab(itemPosition);
+                                heldItem = grabbingItem;
+                            }
+                            break;
+                        case ScalableObject.Scale.Medium:
+                            if ((int)playerScale.currentScale >= (int)grabbingItem.playerSizeToHoldMedium)
+                            {
+                                grabbingItem.Grab(itemPosition);
+                                heldItem = grabbingItem;
+                            }
+                            break;
+                        case ScalableObject.Scale.Big:
+                            if ((int)playerScale.currentScale >= (int)grabbingItem.playerSizeToHoldBig)
+                            {
+                                grabbingItem.Grab(itemPosition);
+                                heldItem = grabbingItem;
+                            }
+                            break;
+                    }
+                }
+
+
+                //If no itemscaler, we will base it of playerSizeToHoldMedium TODO: Clean up the playersizetohold stuff
+                if(itemScaler == null)
+                {
+                    if((int)playerScale.currentScale >= (int)grabbingItem.playerSizeToHoldMedium)
+                    {
+                        grabbingItem.Grab(itemPosition);
+                        heldItem = grabbingItem;
+                    }
+                }
+
             }
         }
     }
