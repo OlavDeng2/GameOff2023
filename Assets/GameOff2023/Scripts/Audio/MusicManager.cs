@@ -64,7 +64,7 @@ public class MusicManager : MonoBehaviour
 
         //load the correct audio levels from PlayerPreferences
 
-        int muteToggleValue = PlayerPrefs.GetInt("MuteToggle", 1);
+        int muteToggleValue = PlayerPrefs.GetInt("MuteToggle", 0);
         if (muteToggleValue == 1)
         {
             Debug.Log("Volume is muted!");
