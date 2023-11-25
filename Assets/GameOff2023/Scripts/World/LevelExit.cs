@@ -4,12 +4,14 @@ using UnityEngine;
 using StarterAssets;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Collider)), RequireComponent(typeof(AudioSource))]
 public class LevelExit : MonoBehaviour
 {
     [SerializeField]
     private GameObject endLevelScreen;
-
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip finishedLevelAudioClip;
 
     [SerializeField]
     private PlayerInput playerInput;
@@ -19,6 +21,8 @@ public class LevelExit : MonoBehaviour
     void Start()
     {
         endLevelScreen.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,5 +34,6 @@ public class LevelExit : MonoBehaviour
         //Mouse Input is locked to game
         starterAssetsInputs.Pause(true);
         endLevelScreen.SetActive(true);
+        audioSource.PlayOneShot(finishedLevelAudioClip);
     }
 }

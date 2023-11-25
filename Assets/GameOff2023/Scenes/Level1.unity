@@ -378,6 +378,7 @@ MonoBehaviour:
   midScale: {x: 1, y: 1, z: 1}
   bigScale: {x: 1.5, y: 1.5, z: 1.5}
   currentScale: 1
+  failToGrowAudio: {fileID: 0}
 --- !u!114 &629202979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,6 +553,7 @@ MonoBehaviour:
   midScale: {x: 1, y: 1, z: 1}
   bigScale: {x: 1.5, y: 1.5, z: 1.5}
   currentScale: 0
+  failToGrowAudio: {fileID: 0}
 --- !u!65 &948646921
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -720,6 +722,7 @@ MonoBehaviour:
   midScale: {x: 1, y: 1, z: 1}
   bigScale: {x: 1.5, y: 1.5, z: 1.5}
   currentScale: 1
+  failToGrowAudio: {fileID: 0}
 --- !u!65 &1305018994
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1083,6 +1086,7 @@ MonoBehaviour:
   midScale: {x: 1, y: 1, z: 1}
   bigScale: {x: 1.5, y: 1.5, z: 1.5}
   currentScale: 1
+  failToGrowAudio: {fileID: 0}
 --- !u!65 &1930906908
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1415,16 +1419,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 407448453}
-    - target: {fileID: 1966803393711197450, guid: 38c067e177d195547ab2fef8b9bb9ea2,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Level1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367082738899869272, guid: 38c067e177d195547ab2fef8b9bb9ea2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3895482790188016111, guid: 38c067e177d195547ab2fef8b9bb9ea2,
         type: 3}
       propertyPath: playerInput
@@ -1432,19 +1426,25 @@ PrefabInstance:
       objectReference: {fileID: 2058501232}
     - target: {fileID: 3895482790188016111, guid: 38c067e177d195547ab2fef8b9bb9ea2,
         type: 3}
-      propertyPath: endLevelScreen
-      value: 
-      objectReference: {fileID: 7181293197138244768}
-    - target: {fileID: 3895482790188016111, guid: 38c067e177d195547ab2fef8b9bb9ea2,
-        type: 3}
       propertyPath: starterAssetsInputs
       value: 
       objectReference: {fileID: 2058501233}
+    - target: {fileID: 3895482790188016111, guid: 38c067e177d195547ab2fef8b9bb9ea2,
+        type: 3}
+      propertyPath: finishedLevelAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 46d6e0e4a5fa0b24885e88f2dd5200c5, type: 3}
     - target: {fileID: 3917771048078074545, guid: 38c067e177d195547ab2fef8b9bb9ea2,
         type: 3}
       propertyPath: m_Name
       value: LevelExit
       objectReference: {fileID: 0}
+    - target: {fileID: 7047348154906573957, guid: 38c067e177d195547ab2fef8b9bb9ea2,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -3646609285679023654, guid: 0e46f781685998d44999c2b83170e946,
+        type: 2}
     - target: {fileID: 8872668855090196725, guid: 38c067e177d195547ab2fef8b9bb9ea2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1500,12 +1500,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38c067e177d195547ab2fef8b9bb9ea2, type: 3}
---- !u!1 &7181293197138244768 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2367082738899869272, guid: 38c067e177d195547ab2fef8b9bb9ea2,
-    type: 3}
-  m_PrefabInstance: {fileID: 7181293197138244765}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7948679490792940256
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1514,6 +1508,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2507545821955712716, guid: 29cf1b4c9be7f804bb5d67594490d6db,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -3646609285679023654, guid: 0e46f781685998d44999c2b83170e946,
+        type: 2}
     - target: {fileID: 2922057890923444664, guid: 29cf1b4c9be7f804bb5d67594490d6db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1564,36 +1564,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7374832271327180705, guid: 29cf1b4c9be7f804bb5d67594490d6db,
+    - target: {fileID: 7265440329875927653, guid: 29cf1b4c9be7f804bb5d67594490d6db,
         type: 3}
-      propertyPath: m_Type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7374832271327180705, guid: 29cf1b4c9be7f804bb5d67594490d6db,
-        type: 3}
-      propertyPath: m_Sprite
+      propertyPath: failToGrowAudio
       value: 
-      objectReference: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 7447410512668339951, guid: 29cf1b4c9be7f804bb5d67594490d6db,
-        type: 3}
-      propertyPath: m_Type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7447410512668339951, guid: 29cf1b4c9be7f804bb5d67594490d6db,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 7456228026344816470, guid: 29cf1b4c9be7f804bb5d67594490d6db,
-        type: 3}
-      propertyPath: m_Type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7456228026344816470, guid: 29cf1b4c9be7f804bb5d67594490d6db,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 8300000, guid: 31e916a002aa6954cb539a8c91ee98f8, type: 3}
     - target: {fileID: 9206671139157838355, guid: 29cf1b4c9be7f804bb5d67594490d6db,
         type: 3}
       propertyPath: m_Name

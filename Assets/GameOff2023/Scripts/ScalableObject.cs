@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
+[RequireComponent(typeof(AudioSource))]
 public class ScalableObject : MonoBehaviour
 {
     [HideInInspector]
@@ -19,11 +19,14 @@ public class ScalableObject : MonoBehaviour
     [SerializeField]
     public Scale currentScale = Scale.Medium;
 
+    [SerializeField]
+    private AudioClip failToGrowAudio;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -54,7 +57,12 @@ public class ScalableObject : MonoBehaviour
     public virtual void Grow()
     {
         //TODO: Give player some feedback about not being able to grow in size in this area
-        if (!canGrow) return;
+        //TODO: Return false to make sure that potion doesnt get used up if not able to grow
+        if (!canGrow)
+        {
+            audioSource.PlayOneShot(failToGrowAudio);
+            return;
+        }
 
         switch (currentScale)
         {
