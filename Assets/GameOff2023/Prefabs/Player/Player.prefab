@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 7157731287489770539}
   - component: {fileID: 5349517810007901419}
   - component: {fileID: 4092668492167809233}
+  - component: {fileID: 1641137710654342438}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -368,6 +369,22 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1641137710654342438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206671139157838355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18bf6ad4db053cf458f19956b18cfd4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smallScale: {x: 0.125, y: 0.125, z: 0.125}
+  midScale: {x: 0.25, y: 0.25, z: 0.25}
+  bigScale: {x: 0.5, y: 0.5, z: 0.5}
+  currentScale: 1
 --- !u!1001 &519304491844108970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -460,6 +477,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7970409926533961371}
     m_Modifications:
+    - target: {fileID: 1080702724474296581, guid: 09373f9872df1194095bb52584aafbf7,
+        type: 3}
+      propertyPath: useAction
+      value: 
+      objectReference: {fileID: 330226732416192396, guid: 0143a0ed6bd6db64c9874ce9cfce410c,
+        type: 3}
+    - target: {fileID: 1080702724474296581, guid: 09373f9872df1194095bb52584aafbf7,
+        type: 3}
+      propertyPath: grabAction
+      value: 
+      objectReference: {fileID: 6674225808919363140, guid: 0143a0ed6bd6db64c9874ce9cfce410c,
+        type: 3}
+    - target: {fileID: 1080702724474296581, guid: 09373f9872df1194095bb52584aafbf7,
+        type: 3}
+      propertyPath: throwAction
+      value: 
+      objectReference: {fileID: -6218855704674762491, guid: 0143a0ed6bd6db64c9874ce9cfce410c,
+        type: 3}
+    - target: {fileID: 1080702724474296581, guid: 09373f9872df1194095bb52584aafbf7,
+        type: 3}
+      propertyPath: owningPlayer
+      value: 
+      objectReference: {fileID: 9206671139157838355}
     - target: {fileID: 4921099055285422171, guid: 09373f9872df1194095bb52584aafbf7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -514,6 +554,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Inventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 7891029745993868330, guid: 09373f9872df1194095bb52584aafbf7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

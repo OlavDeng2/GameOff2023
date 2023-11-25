@@ -2,20 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Potion : Item, IGrabbableItem, IUsableItem
+[RequireComponent(typeof(Collider)), RequireComponent(typeof(Rigidbody))]
+public class GrababbleItem : Item
 {
+
     [SerializeField]
     private float throwForce;
     private Collider collider;
     private Rigidbody rigidbody;
 
 
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         collider = this.GetComponent<Collider>();
         rigidbody = this.GetComponent<Rigidbody>();
     }
-    public void Grab(Transform newParent)
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    virtual public void Grab(Transform newParent)
     {
         this.transform.parent = newParent;
         this.transform.localPosition = new Vector3(0, 0, 0);
@@ -28,22 +37,21 @@ public class Potion : Item, IGrabbableItem, IUsableItem
 
     }
 
-    public void Drop()
+    virtual public void Drop()
     {
         this.transform.parent = null;
         collider.enabled = true;
         rigidbody.isKinematic = false;
 
         Debug.Log("Dropped item");
-
     }
 
-    public void Use()
+    virtual public void Use(GameObject usingObject)
     {
-        //TODO: Do stuff to use the potion(use drinks)
+
     }
 
-    public void Throw()
+    virtual public void Throw()
     {
         Drop();
         this.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce);
