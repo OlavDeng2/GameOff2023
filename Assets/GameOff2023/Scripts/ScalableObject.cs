@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ScalableObject : MonoBehaviour
 {
-    enum Scale { Small, Medium, Big};
+    public enum Scale { Small, Medium, Big};
 
     [SerializeField]
     private Vector3 smallScale = new Vector3(0.5f, 0.5f, 0.5f);
@@ -15,7 +15,7 @@ public class ScalableObject : MonoBehaviour
     [SerializeField]
     private Vector3 bigScale = new Vector3(1.5f, 1.5f, 1.5f);
     [SerializeField]
-    private Scale currentScale = Scale.Medium;
+    public Scale currentScale = Scale.Medium;
 
 
     // Start is called before the first frame update
@@ -30,7 +30,7 @@ public class ScalableObject : MonoBehaviour
         
     }
 
-    public void Shrink()
+    public virtual void Shrink()
     {
         switch (currentScale)
         {
@@ -48,7 +48,7 @@ public class ScalableObject : MonoBehaviour
         }
     }
 
-    public void Grow()
+    public virtual void Grow()
     {
         switch (currentScale)
         {
