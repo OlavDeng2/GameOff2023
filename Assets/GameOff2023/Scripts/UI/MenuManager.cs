@@ -8,8 +8,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private GameObject[] allPanels;
     [SerializeField]
-    private GameObject startPanel;
-    private GameObject currentPanel;
+    public GameObject startPanel;
+    [HideInInspector]
+    public GameObject currentPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +35,10 @@ public class MenuManager : MonoBehaviour
 
     public void OpenLevel(string levelToOpen)
     {
+        if (LevelManager.levelManager == null)
+        {
+            Debug.LogError("No level manager instance exists, not doing anything");
+        }
         LevelManager.levelManager.LoadLevel(levelToOpen);
     }
 

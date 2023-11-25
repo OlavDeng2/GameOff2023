@@ -19,6 +19,7 @@ namespace StarterAssets
 		[Header("Mouse Cursor Settings")]
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
+		private bool isPaused = false;
 
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
@@ -65,10 +66,24 @@ namespace StarterAssets
 		{
 			sprint = newSprintState;
 		}
-		
-		private void OnApplicationFocus(bool hasFocus)
+
+        public void Pause(bool isPaused)
+        {
+			this.isPaused = isPaused;
+			SetCursorState(!isPaused);
+        }
+
+        private void OnApplicationFocus(bool hasFocus)
 		{
-			SetCursorState(cursorLocked);
+			if(!isPaused)
+            {
+				SetCursorState(cursorLocked);
+			}
+
+			else
+            {
+				SetCursorState(!isPaused);
+            }
 		}
 
 		private void SetCursorState(bool newState)
