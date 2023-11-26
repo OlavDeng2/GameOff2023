@@ -7,7 +7,7 @@ using UnityEngine.Audio;
 [RequireComponent(typeof(Collider)), RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(AudioSource))]
 public class GrababbleItem : Item
 {
-
+    public bool isHeld = false;
     public enum PlayerSizeToHold { Small, Medium, Big, NotPossible };
 
     //left: size of object, Right: minimum Size of player
@@ -62,6 +62,7 @@ public class GrababbleItem : Item
         //Base collider used for trigger detection, which will be later used to see if you are allowed to drop item
         colliders[0].enabled = true;
         colliders[0].isTrigger = true;
+        isHeld = true;
     }
 
     virtual public bool Drop()
@@ -78,7 +79,7 @@ public class GrababbleItem : Item
         rigidbody.isKinematic = false;
 
         colliders[0].isTrigger = false;
-
+        isHeld = false;
         return true;
     }
 
@@ -93,10 +94,15 @@ public class GrababbleItem : Item
     }
     private void OnTriggerEnter(Collider other)
     {
+        //Dont do anything if place point
+        if (other.GetComponent<ItemPlacePoint>() != null) return;
         collidingObjectsWhileHeld.Add(other);
+        
     }
     private void OnTriggerExit(Collider other)
     {
+        //Dont do anything if place point
+        if (other.GetComponent<ItemPlacePoint>() != null) return;
         collidingObjectsWhileHeld.Remove(other);
 
     }

@@ -11,9 +11,15 @@ public class ItemPlacePoint : MonoBehaviour
     [SerializeField]
     private AudioClip placeAudio;
     [SerializeField]
+    private AudioClip removeAudio;
+    [SerializeField]
     private GameObject objectToPlace;
     [SerializeField]
     private UnityEvent OnPlace;
+    [SerializeField]
+    private UnityEvent OnRemove;
+
+    bool itemPlaced = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +28,34 @@ public class ItemPlacePoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(objectToPlace == other.gameObject)
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (objectToPlace == other.gameObject)
         {
-            audioSource.PlayOneShot(placeAudio);
-            OnPlace?.Invoke();
+            if(other.GetComponent<GrababbleItem>() != null)
+            {
+                if (other.GetComponent<GrababbleItem>().isHeld) return;
+                if (itemPlaced) return;
+                audioSource.PlayOneShot(placeAudio);
+                OnPlace?.Invoke();
+                itemPlaced = true;
+            }
+
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (objectToPlace == other.gameObject)
+        {
+            if (!itemPlaced) return;
+
+            audioSource.PlayOneShot(removeAudio);
+            OnRemove?.Invoke();
+            itemPlaced = false;
+        }    
     }
 }
