@@ -20,6 +20,9 @@ public class ScalableObject : MonoBehaviour
     public Scale currentScale = Scale.Medium;
 
     [SerializeField]
+    private float growthJump = 0.5f;
+
+    [SerializeField]
     private AudioClip failToScaleAudio;
     private AudioSource audioSource;
 
@@ -71,10 +74,12 @@ public class ScalableObject : MonoBehaviour
             case Scale.Small:
                 this.transform.localScale = midScale;
                 currentScale = Scale.Medium;
+                this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + growthJump, this.transform.position.z);
                 break;
             case Scale.Medium:
                 this.transform.localScale = bigScale;
                 currentScale = Scale.Big;
+                this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + growthJump, this.transform.position.z);
                 break;
 
             case Scale.Big:
