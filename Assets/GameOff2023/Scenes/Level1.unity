@@ -2830,6 +2830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf4def933a9f6840a89b17529f7d492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHeld: 0
   playerSizeToHoldSmall: 1
   playerSizeToHoldMedium: 2
   playerSizeToHoldBig: 3
@@ -3756,6 +3757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf4def933a9f6840a89b17529f7d492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHeld: 0
   playerSizeToHoldSmall: 0
   playerSizeToHoldMedium: 1
   playerSizeToHoldBig: 2
@@ -5516,6 +5518,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 407448453}
+    - target: {fileID: 1966803393711197450, guid: 38c067e177d195547ab2fef8b9bb9ea2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Level2
+      objectReference: {fileID: 0}
     - target: {fileID: 3895482790188016111, guid: 38c067e177d195547ab2fef8b9bb9ea2,
         type: 3}
       propertyPath: playerInput
