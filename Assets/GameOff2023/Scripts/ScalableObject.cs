@@ -47,6 +47,7 @@ public class ScalableObject : MonoBehaviour
             case Scale.Medium:
                 this.transform.localScale = smallScale;
                 currentScale = Scale.Small;
+
                 break;
             case Scale.Small:
                 //smallest scale, can't do anything
@@ -60,7 +61,7 @@ public class ScalableObject : MonoBehaviour
         //TODO: Return false to make sure that potion doesnt get used up if not able to grow
         if (!canGrow)
         {
-            audioSource.PlayOneShot(failToGrowAudio);
+            //audioSource.PlayOneShot(failToGrowAudio);
             return;
         }
 
