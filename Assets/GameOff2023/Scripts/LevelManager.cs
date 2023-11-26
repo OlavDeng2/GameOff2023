@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField]
     private GameObject loadingScreen;
+
+    private string currentLevel;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,12 @@ public class LevelManager : MonoBehaviour
     public void LoadLevel(string levelName)
     {
         StartCoroutine(LoadSceneAsync(levelName));
+        currentLevel = levelName;
+    }
+
+    public void RestartLevel()
+    {
+        LoadLevel(currentLevel);
     }
 
     private IEnumerator LoadSceneAsync(string levelName)

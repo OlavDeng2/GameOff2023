@@ -56,4 +56,9 @@ public class IngameMenu : MenuManager
             starterAssetsInputs.Pause(true);
         }
     }
+
+    public void ReloadLevel()
+    {
+        LevelManager.levelManager.RestartLevel();
+    }
 }
