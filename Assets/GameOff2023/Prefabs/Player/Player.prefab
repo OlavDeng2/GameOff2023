@@ -2990,8 +2990,8 @@ MonoBehaviour:
   currentScale: 1
   failToGrowAudio: {fileID: 8300000, guid: 31e916a002aa6954cb539a8c91ee98f8, type: 3}
   smallJumpHeight: 0.2
-  mediumJumpHeight: 0.6
-  bigJumpHeight: 1
+  mediumJumpHeight: 0.5
+  bigJumpHeight: 0.65
 --- !u!82 &2507545821955712716
 AudioSource:
   m_ObjectHideFlags: 0
