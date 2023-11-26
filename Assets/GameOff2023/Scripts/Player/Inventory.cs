@@ -142,11 +142,14 @@ public class Inventory : MonoBehaviour
     {
         if (heldItem != null)
         {
-            heldItem.Drop();
-            heldItem = null;
+            if(heldItem.Drop())
+            {
+                heldItem = null;
 
-            throwItemImage.SetActive(false);
-            useItemImage.SetActive(false);
+                throwItemImage.SetActive(false);
+                useItemImage.SetActive(false);
+            }
+
 
         }
 
@@ -246,11 +249,12 @@ public class Inventory : MonoBehaviour
     {
         if (heldItem == null) return;
 
-        heldItem.Throw();
-        heldItem = null;
+        if(heldItem.Throw())
+        {
+            heldItem = null;
 
-        throwItemImage.SetActive(false);
-        useItemImage.SetActive(false);
-
+            throwItemImage.SetActive(false);
+            useItemImage.SetActive(false);
+        }
     }
 }
