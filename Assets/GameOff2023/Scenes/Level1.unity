@@ -2834,9 +2834,9 @@ MonoBehaviour:
   playerSizeToHoldMedium: 2
   playerSizeToHoldBig: 3
   throwForce: 0
+  audioSource: {fileID: 0}
   grabItemAudio: {fileID: 0}
   dropItemAudio: {fileID: 0}
-  throwItemAudio: {fileID: 0}
 --- !u!54 &948646919
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2881,7 +2881,8 @@ MonoBehaviour:
   midScale: {x: 1, y: 1, z: 1}
   bigScale: {x: 1.5, y: 1.5, z: 1.5}
   currentScale: 1
-  failToGrowAudio: {fileID: 0}
+  growthJump: 0.5
+  failToScaleAudio: {fileID: 0}
 --- !u!65 &948646921
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3759,9 +3760,9 @@ MonoBehaviour:
   playerSizeToHoldMedium: 1
   playerSizeToHoldBig: 2
   throwForce: 0
+  audioSource: {fileID: 0}
   grabItemAudio: {fileID: 0}
   dropItemAudio: {fileID: 0}
-  throwItemAudio: {fileID: 0}
 --- !u!54 &1305018992
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3806,7 +3807,8 @@ MonoBehaviour:
   midScale: {x: 0.5, y: 0.3, z: 0.5}
   bigScale: {x: 0.7, y: 0.5, z: 0.7}
   currentScale: 1
-  failToGrowAudio: {fileID: 0}
+  growthJump: 0.5
+  failToScaleAudio: {fileID: 0}
 --- !u!65 &1305018994
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5266,7 +5268,7 @@ PrefabInstance:
     - target: {fileID: 140745530946082301, guid: 3782f5dcc8f32294a94e743f8a45fe3b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.516
+      value: -2.381
       objectReference: {fileID: 0}
     - target: {fileID: 140745530946082301, guid: 3782f5dcc8f32294a94e743f8a45fe3b,
         type: 3}
@@ -5308,6 +5310,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enlarging_potion
       objectReference: {fileID: 0}
+    - target: {fileID: 7585890047697899683, guid: 3782f5dcc8f32294a94e743f8a45fe3b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 75de5114e276bdd4c96b2700b63ff9fd, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5327,6 +5334,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 827251463}
     m_Modifications:
+    - target: {fileID: 5196600137515639595, guid: 792d4ee78bdea174895860e20de0ac6e,
+        type: 3}
+      propertyPath: Recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5196600137515639595, guid: 792d4ee78bdea174895860e20de0ac6e,
+        type: 3}
+      propertyPath: MaxWobble
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5196600137515639595, guid: 792d4ee78bdea174895860e20de0ac6e,
+        type: 3}
+      propertyPath: WobbleSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6724650501561375220, guid: 792d4ee78bdea174895860e20de0ac6e,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LiquidShader Material
+  m_Name: GrowthLiquidShader Material 1
   m_Shader: {fileID: -6465566751694194690, guid: 34a11e3910692f8429944d98534d1a20,
     type: 3}
   m_Parent: {fileID: 0}
@@ -59,6 +59,6 @@ Material:
     - _WobbleZ: 0
     m_Colors:
     - _Fresnel_Color: {r: 1, g: 1, b: 1, a: 0}
-    - _Liquid_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Liquid_Color: {r: 0, g: 0.40500665, b: 1, a: 1}
     - _Surface_Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   m_BuildTextureStacks: []
