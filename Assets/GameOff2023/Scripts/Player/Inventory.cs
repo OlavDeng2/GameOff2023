@@ -145,10 +145,7 @@ public class Inventory : MonoBehaviour
         {
             if(heldItem.Drop())
             {
-                heldItem = null;
-
-                throwItemImage.SetActive(false);
-                useItemImage.SetActive(false);
+                RemoveCurrentHeldItem();
             }
 
 
@@ -252,10 +249,15 @@ public class Inventory : MonoBehaviour
 
         if(heldItem.Throw())
         {
-            heldItem = null;
-
-            throwItemImage.SetActive(false);
-            useItemImage.SetActive(false);
+            RemoveCurrentHeldItem();
         }
+    }
+
+    public void RemoveCurrentHeldItem()
+    {
+        heldItem = null;
+
+        throwItemImage.SetActive(false);
+        useItemImage.SetActive(false);
     }
 }

@@ -26,16 +26,29 @@ public class ShrinkingPotion : GrababbleItem, IUsableItem
                 //Work around for scaling issue, scaling potions are the only thing that can be held while you change size
                 this.transform.parent = null;
                 this.transform.localScale = new Vector3(1, 1, 1);
-                scaling.Shrink();
+                bool wasUsed = scaling.Shrink();
                 this.transform.parent = currentParent;
                 this.transform.localPosition = new Vector3(0, 0, 0);
                 this.transform.localRotation = Quaternion.identity;
+
+
+                if (wasUsed)
+                {
+                    Destroy(this.gameObject);
+                    //TODO: Do things for if item was in player inventory
+                }
             }
             //No need for any work around if not being held by player
             else
             {
-                scaling.Shrink();
+                if(scaling.Shrink())
+                {
+                    //Remove when used
+                    Destroy(this);
+                }
             }
+
+
 
         }
     }
@@ -45,8 +58,10 @@ public class ShrinkingPotion : GrababbleItem, IUsableItem
         ScalableObject otherObject = collision.gameObject.GetComponent<ScalableObject>();
         if (otherObject == null) return;
         audioSource.PlayOneShot(useAudio);
-        otherObject.Shrink();
-        Destroy(this.gameObject);
+        if(otherObject.Shrink())
+        {
+            Destroy(this.gameObject);
+        }
     }
 
 

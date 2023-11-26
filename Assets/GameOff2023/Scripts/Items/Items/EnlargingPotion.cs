@@ -20,6 +20,7 @@ public class EnlargingPotion : GrababbleItem, IUsableItem
         }
         else if(scaling != null)
         {
+ 
             audioSource.PlayOneShot(useAudio);
             Transform currentParent = this.transform.parent;
             //Is being held by player
@@ -30,16 +31,34 @@ public class EnlargingPotion : GrababbleItem, IUsableItem
                 //Work around for scaling issue, scaling potions are the only thing that can be held while you change size
                 this.transform.parent = null;
                 this.transform.localScale = new Vector3(1, 1, 1);
-                scaling.Grow();
+                bool wasUsed = scaling.Grow();
                 this.transform.parent = currentParent;
                 this.transform.localPosition = new Vector3(0, 0, 0);
                 this.transform.localRotation = Quaternion.identity;
+
+                if (wasUsed)
+                {
+                    Destroy(this.gameObject);
+                    //The player can only have 1x inventory
+                    Inventory inv = usingObject.GetComponentInChildren<Inventory>();
+                    if (inv != null)
+                    {
+                        inv.RemoveCurrentHeldItem();
+                        Debug.Log("Grew potion used");
+
+                    }
+                }
             }
             //No need for any work around if not being held by player
             else
             {
-                scaling.Grow();
+               if(scaling.Grow())
+                {
+                    Destroy(this);
+                }    
             }
+
+
 
         }
     }
@@ -49,8 +68,11 @@ public class EnlargingPotion : GrababbleItem, IUsableItem
         ScalableObject otherObject = collision.gameObject.GetComponent<ScalableObject>();
         if (otherObject == null) return;
         audioSource.PlayOneShot(useAudio);
-        otherObject.Grow();
-        Destroy(this.gameObject);
+        if(otherObject.Grow())
+        {
+            Destroy(this.gameObject);
+
+        }
     }
 
 

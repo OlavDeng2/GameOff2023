@@ -38,7 +38,7 @@ public class ScalableObject : MonoBehaviour
         
     }
 
-    public virtual void Shrink()
+    public virtual bool Shrink()
     {
         
         switch (currentScale)
@@ -46,27 +46,26 @@ public class ScalableObject : MonoBehaviour
             case Scale.Big:
                 this.transform.localScale = midScale;
                 currentScale = Scale.Medium;
-                break;
+                return true;
             case Scale.Medium:
                 this.transform.localScale = smallScale;
                 currentScale = Scale.Small;
-
-                break;
-            case Scale.Small:
+                return true;
+            default:
                 //smallest scale, can't do anything
                 audioSource.PlayOneShot(failToScaleAudio);
-                break;
+                return false;
         }
     }
 
-    public virtual void Grow()
+    public virtual bool Grow()
     {
         //TODO: Give player some feedback about not being able to grow in size in this area
         //TODO: Return false to make sure that potion doesnt get used up if not able to grow
         if (!canGrow)
         {
             audioSource.PlayOneShot(failToScaleAudio);
-            return;
+            return false;
         }
 
         switch (currentScale)
@@ -75,17 +74,17 @@ public class ScalableObject : MonoBehaviour
                 this.transform.localScale = midScale;
                 currentScale = Scale.Medium;
                 this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + growthJump, this.transform.position.z);
-                break;
+                return true;
             case Scale.Medium:
                 this.transform.localScale = bigScale;
                 currentScale = Scale.Big;
                 this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + growthJump, this.transform.position.z);
-                break;
+                return true;
 
-            case Scale.Big:
+            default:
                 //biggest scale, can't do anything
                 audioSource.PlayOneShot(failToScaleAudio);
-                break;
+                return false;
         }
     }
 }
