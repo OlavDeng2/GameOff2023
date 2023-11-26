@@ -88,7 +88,6 @@ public class Inventory : MonoBehaviour
 
             if (currentlyLookingAt != null)
             {
-                Debug.Log("Currently looking at item");
                 //if Item, check if grabable or usable.
                 if(currentlyLookingAt as GrababbleItem != null)
                 {
@@ -115,7 +114,6 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            Debug.Log("No longer looking at item");
             useItemImage.SetActive(false);
             grabItemImage.SetActive(false);
         }
