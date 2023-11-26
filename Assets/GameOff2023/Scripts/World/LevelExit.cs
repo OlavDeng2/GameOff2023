@@ -30,6 +30,11 @@ public class LevelExit : MonoBehaviour
         //Check if player
         if (other.GetComponent<FirstPersonController>() == null) return;
 
+        EndLevel();
+    }
+
+    public void EndLevel()
+    {
         playerInput.SwitchCurrentActionMap("InMenu");
         //Mouse Input is locked to game
         starterAssetsInputs.Pause(true);
