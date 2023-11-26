@@ -109,6 +109,7 @@ public class Inventory : MonoBehaviour
         {
             useItemImage.SetActive(false);
             grabItemImage.SetActive(false);
+            currentlyLookingAt = null;
         }
 
     }
