@@ -17,23 +17,25 @@ public class GrababbleItem : Item
 
     [SerializeField]
     private float throwForce;
-    private Collider collider;
+    
+    private List<Collider> colliders = new List<Collider>();
     private Rigidbody rigidbody;
 
+    private List<Collider> collidingObjectsWhileHeld = new List<Collider>();
+
     [Header("Audio")]
-    private AudioSource audioSource;
+    [HideInInspector]
+    public AudioSource audioSource;
     [SerializeField]
     private AudioClip grabItemAudio;
     [SerializeField]
     private AudioClip dropItemAudio;
-    [SerializeField]
-    private AudioClip throwItemAudio;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        collider = this.GetComponent<Collider>();
+        colliders.AddRange(GetComponentsInChildren<Collider>());
         rigidbody = this.GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -49,21 +51,53 @@ public class GrababbleItem : Item
         this.transform.localPosition = new Vector3(0, 0, 0);
         this.transform.localRotation = Quaternion.identity;
 
-        collider.enabled = false;
+        foreach(Collider col in colliders)
+        {
+            col.enabled = false;
+        }
         rigidbody.isKinematic = true;
+
+        audioSource.PlayOneShot(grabItemAudio);
+
+        //Base collider used for trigger detection, which will be later used to see if you are allowed to drop item
+        colliders[0].enabled = true;
+        colliders[0].isTrigger = true;
     }
 
-    virtual public void Drop()
+    virtual public bool Drop()
     {
+        //Dont allow a drop if colliding with other objects
+        if (collidingObjectsWhileHeld.Count > 0) return false; 
+        audioSource.PlayOneShot(dropItemAudio);
+
         this.transform.parent = null;
-        collider.enabled = true;
+        foreach (Collider col in colliders)
+        {
+            col.enabled = true;
+        }
         rigidbody.isKinematic = false;
+
+        colliders[0].isTrigger = false;
+
+        return true;
     }
 
-    virtual public void Throw()
+    virtual public bool Throw()
     {
-        Drop();
-        this.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce);
+        if(Drop())
+        {
+            this.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce);
+            return true;
+        }
+        return false;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        collidingObjectsWhileHeld.Add(other);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        collidingObjectsWhileHeld.Remove(other);
 
     }
 }

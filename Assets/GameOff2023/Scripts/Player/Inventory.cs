@@ -22,15 +22,8 @@ public class Inventory : MonoBehaviour
     [Header("Audio")]
     private AudioSource audioSource;
     [SerializeField]
-    private AudioClip useSound;
-    [SerializeField]
-    private AudioClip throwSound;
-    [SerializeField]
-    private AudioClip grabSound;
-    [SerializeField]
     private AudioClip failGrabSound;
-    [SerializeField]
-    private AudioClip dropSound;
+
 
 
 
@@ -116,6 +109,7 @@ public class Inventory : MonoBehaviour
         {
             useItemImage.SetActive(false);
             grabItemImage.SetActive(false);
+            currentlyLookingAt = null;
         }
 
     }
@@ -129,8 +123,6 @@ public class Inventory : MonoBehaviour
             if(heldItem as IUsableItem != null)
             {
                 usableItem.Use(owningPlayer);
-                audioSource.PlayOneShot(useSound);
-
             }
         }
 
@@ -140,8 +132,7 @@ public class Inventory : MonoBehaviour
             if(usableItem != null)
             {
                 usableItem.Use(owningPlayer);
-                audioSource.PlayOneShot(useSound);
-
+                usableItem.Use(owningPlayer);
             }
 
 
@@ -152,12 +143,14 @@ public class Inventory : MonoBehaviour
     {
         if (heldItem != null)
         {
-            heldItem.Drop();
-            heldItem = null;
+            if(heldItem.Drop())
+            {
+                heldItem = null;
 
-            throwItemImage.SetActive(false);
-            useItemImage.SetActive(false);
-            audioSource.PlayOneShot(dropSound);
+                throwItemImage.SetActive(false);
+                useItemImage.SetActive(false);
+            }
+
 
         }
 
@@ -183,7 +176,6 @@ public class Inventory : MonoBehaviour
                             {
                                 grabbingItem.Grab(itemPosition);
                                 heldItem = grabbingItem;
-                                audioSource.PlayOneShot(grabSound);
                                 //Hide grab item UI
                                 grabItemImage.SetActive(false);
                                 //Show UI that you can throw item
@@ -201,7 +193,6 @@ public class Inventory : MonoBehaviour
                             {
                                 grabbingItem.Grab(itemPosition);
                                 heldItem = grabbingItem;
-                                audioSource.PlayOneShot(grabSound);
                                 //Hide grab item UI
                                 grabItemImage.SetActive(false);
                                 //Show UI that you can throw item
@@ -219,7 +210,6 @@ public class Inventory : MonoBehaviour
                             {
                                 grabbingItem.Grab(itemPosition);
                                 heldItem = grabbingItem;
-                                audioSource.PlayOneShot(grabSound);
                                 //Hide grab item UI
                                 grabItemImage.SetActive(false);
                                 //Show UI that you can throw item
@@ -246,8 +236,9 @@ public class Inventory : MonoBehaviour
                     {
                         grabbingItem.Grab(itemPosition);
                         heldItem = grabbingItem;
-                        audioSource.PlayOneShot(grabSound);
-
+                        grabItemImage.SetActive(false);
+                        //Show UI that you can throw item
+                        throwItemImage.SetActive(true);
                     }
                 }
 
@@ -259,12 +250,12 @@ public class Inventory : MonoBehaviour
     {
         if (heldItem == null) return;
 
-        heldItem.Throw();
-        heldItem = null;
+        if(heldItem.Throw())
+        {
+            heldItem = null;
 
-        throwItemImage.SetActive(false);
-        useItemImage.SetActive(false);
-        audioSource.PlayOneShot(throwSound);
-
+            throwItemImage.SetActive(false);
+            useItemImage.SetActive(false);
+        }
     }
 }

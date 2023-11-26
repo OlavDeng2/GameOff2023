@@ -2988,7 +2988,7 @@ MonoBehaviour:
   midScale: {x: 0.25, y: 0.25, z: 0.25}
   bigScale: {x: 0.5, y: 0.5, z: 0.5}
   currentScale: 1
-  failToGrowAudio: {fileID: 8300000, guid: 31e916a002aa6954cb539a8c91ee98f8, type: 3}
+  failToScaleAudio: {fileID: 0}
   smallJumpHeight: 0.2
   mediumJumpHeight: 0.5
   bigJumpHeight: 0.65
@@ -3244,6 +3244,11 @@ PrefabInstance:
       propertyPath: throwItemImage
       value: 
       objectReference: {fileID: 4692820548384464975}
+    - target: {fileID: 1080702724474296581, guid: 09373f9872df1194095bb52584aafbf7,
+        type: 3}
+      propertyPath: grabLayers.m_Bits
+      value: 127
+      objectReference: {fileID: 0}
     - target: {fileID: 4921099055285422171, guid: 09373f9872df1194095bb52584aafbf7,
         type: 3}
       propertyPath: m_LocalPosition.x
