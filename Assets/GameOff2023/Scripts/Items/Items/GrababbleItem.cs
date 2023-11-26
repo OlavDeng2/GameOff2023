@@ -17,7 +17,8 @@ public class GrababbleItem : Item
 
     [SerializeField]
     private float throwForce;
-    private Collider collider;
+    [SerializeField]
+    private List<Collider> colliders;
     private Rigidbody rigidbody;
 
     [Header("Audio")]
@@ -33,7 +34,7 @@ public class GrababbleItem : Item
     // Start is called before the first frame update
     void Start()
     {
-        collider = this.GetComponent<Collider>();
+        colliders.AddRange(GetComponentsInChildren<Collider>());
         rigidbody = this.GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -49,14 +50,20 @@ public class GrababbleItem : Item
         this.transform.localPosition = new Vector3(0, 0, 0);
         this.transform.localRotation = Quaternion.identity;
 
-        collider.enabled = false;
+        foreach(Collider col in colliders)
+        {
+            col.enabled = false;
+        }
         rigidbody.isKinematic = true;
     }
 
     virtual public void Drop()
     {
         this.transform.parent = null;
-        collider.enabled = true;
+        foreach (Collider col in colliders)
+        {
+            col.enabled = true;
+        }
         rigidbody.isKinematic = false;
     }
 
