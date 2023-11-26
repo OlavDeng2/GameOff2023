@@ -2756,6 +2756,7 @@ GameObject:
   - component: {fileID: 4092668492167809233}
   - component: {fileID: 7265440329875927653}
   - component: {fileID: 2507545821955712716}
+  - component: {fileID: 5509450841384749747}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -2988,6 +2989,7 @@ MonoBehaviour:
   midScale: {x: 0.25, y: 0.25, z: 0.25}
   bigScale: {x: 0.5, y: 0.5, z: 0.5}
   currentScale: 1
+  growthJump: 0.5
   failToScaleAudio: {fileID: 0}
   smallJumpHeight: 0.2
   mediumJumpHeight: 0.5
@@ -3089,6 +3091,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5509450841384749747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206671139157838355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32fcdddb456e42545afcbed218c081ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meowAction: {fileID: -5091080736556669551, guid: 0143a0ed6bd6db64c9874ce9cfce410c,
+    type: 3}
+  meowSound: {fileID: 8300000, guid: cc79555a0e9d75d45a75a3c43da89496, type: 3}
 --- !u!1001 &519304491844108970
 PrefabInstance:
   m_ObjectHideFlags: 0

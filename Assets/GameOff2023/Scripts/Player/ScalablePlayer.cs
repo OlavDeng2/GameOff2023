@@ -24,16 +24,18 @@ public class ScalablePlayer : ScalableObject
         
     }
 
-    public override void Grow()
+    public override bool Grow()
     {
-        base.Grow();
+        
         SetCurrrentJump();
+        return base.Grow();
     }
 
-    public override void Shrink()
+    public override bool Shrink()
     {
-        base.Shrink();
+        
         SetCurrrentJump();
+        return base.Shrink();
     }
 
     private void SetCurrrentJump()

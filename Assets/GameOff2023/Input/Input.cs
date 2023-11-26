@@ -98,6 +98,15 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Meow"",
+                    ""type"": ""Button"",
+                    ""id"": ""a72e81e7-2aa6-442a-bf0d-346af99d73fa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -320,6 +329,17 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""action"": ""OpenIngameMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6fa1990-d3b7-474e-a6d8-5f8e122060d4"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Meow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -412,6 +432,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
         m_Player_ThrowItem = m_Player.FindAction("ThrowItem", throwIfNotFound: true);
         m_Player_UseItem = m_Player.FindAction("UseItem", throwIfNotFound: true);
         m_Player_OpenIngameMenu = m_Player.FindAction("OpenIngameMenu", throwIfNotFound: true);
+        m_Player_Meow = m_Player.FindAction("Meow", throwIfNotFound: true);
         // InMenu
         m_InMenu = asset.FindActionMap("InMenu", throwIfNotFound: true);
         m_InMenu_CloseMenu = m_InMenu.FindAction("CloseMenu", throwIfNotFound: true);
@@ -484,6 +505,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ThrowItem;
     private readonly InputAction m_Player_UseItem;
     private readonly InputAction m_Player_OpenIngameMenu;
+    private readonly InputAction m_Player_Meow;
     public struct PlayerActions
     {
         private @Input m_Wrapper;
@@ -496,6 +518,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
         public InputAction @ThrowItem => m_Wrapper.m_Player_ThrowItem;
         public InputAction @UseItem => m_Wrapper.m_Player_UseItem;
         public InputAction @OpenIngameMenu => m_Wrapper.m_Player_OpenIngameMenu;
+        public InputAction @Meow => m_Wrapper.m_Player_Meow;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -529,6 +552,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @OpenIngameMenu.started += instance.OnOpenIngameMenu;
             @OpenIngameMenu.performed += instance.OnOpenIngameMenu;
             @OpenIngameMenu.canceled += instance.OnOpenIngameMenu;
+            @Meow.started += instance.OnMeow;
+            @Meow.performed += instance.OnMeow;
+            @Meow.canceled += instance.OnMeow;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -557,6 +583,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @OpenIngameMenu.started -= instance.OnOpenIngameMenu;
             @OpenIngameMenu.performed -= instance.OnOpenIngameMenu;
             @OpenIngameMenu.canceled -= instance.OnOpenIngameMenu;
+            @Meow.started -= instance.OnMeow;
+            @Meow.performed -= instance.OnMeow;
+            @Meow.canceled -= instance.OnMeow;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -666,6 +695,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
         void OnThrowItem(InputAction.CallbackContext context);
         void OnUseItem(InputAction.CallbackContext context);
         void OnOpenIngameMenu(InputAction.CallbackContext context);
+        void OnMeow(InputAction.CallbackContext context);
     }
     public interface IInMenuActions
     {

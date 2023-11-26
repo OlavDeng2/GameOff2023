@@ -1,5 +1,5 @@
 # GameOff2023
-
+This game was created mainly between 24th of november and 26th of november for the GameOff2023 gamejam. Due to other obligations we have not been able to work on this project much more.
 ## Softare
 Unity Version used: 2022.3.12f
 
