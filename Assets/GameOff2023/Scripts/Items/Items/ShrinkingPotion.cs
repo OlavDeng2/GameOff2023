@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using StarterAssets;
+using System.Threading.Tasks;
 public class ShrinkingPotion : GrababbleItem, IUsableItem
 {
     //TODO: fail to use sound
     [SerializeField]
     private AudioClip useAudio;
-    public void Use(GameObject usingObject)
+
+    [SerializeField]
+    private float drinkTime = 2.0f;
+    public async void Use(GameObject usingObject)
     {
         ScalableObject scaling = usingObject.GetComponent<ScalableObject>();
         if(scaling == null)
@@ -34,8 +38,18 @@ public class ShrinkingPotion : GrababbleItem, IUsableItem
 
                 if (wasUsed)
                 {
+                    await Task.Delay((int)(drinkTime * 1000));
+
+
+                    //The player can only have 1x inventory
+                    Inventory inv = usingObject.GetComponentInChildren<Inventory>();
+                    if (inv != null)
+                    {
+                        inv.RemoveCurrentHeldItem();
+
+                    }
+
                     Destroy(this.gameObject);
-                    //TODO: Do things for if item was in player inventory
                 }
             }
             //No need for any work around if not being held by player
@@ -43,6 +57,7 @@ public class ShrinkingPotion : GrababbleItem, IUsableItem
             {
                 if(scaling.Shrink())
                 {
+                    await Task.Delay((int)(drinkTime * 1000));
                     //Remove when used
                     Destroy(this);
                 }
@@ -52,6 +67,7 @@ public class ShrinkingPotion : GrababbleItem, IUsableItem
 
         }
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {

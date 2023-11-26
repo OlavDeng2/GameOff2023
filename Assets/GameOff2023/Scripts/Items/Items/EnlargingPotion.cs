@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using StarterAssets;
+using System.Threading.Tasks;
+
 
 public class EnlargingPotion : GrababbleItem, IUsableItem
 {
@@ -10,7 +12,10 @@ public class EnlargingPotion : GrababbleItem, IUsableItem
     [SerializeField]
     private AudioClip useAudio;
 
-    public void Use(GameObject usingObject)
+    [SerializeField]
+    private float drinkTime = 2.0f;
+
+    public async void Use(GameObject usingObject)
     {
         ScalableObject scaling = usingObject.GetComponent<ScalableObject>();
         if(scaling == null)
@@ -38,15 +43,17 @@ public class EnlargingPotion : GrababbleItem, IUsableItem
 
                 if (wasUsed)
                 {
-                    Destroy(this.gameObject);
+                    await Task.Delay((int)(drinkTime * 1000));
+
                     //The player can only have 1x inventory
                     Inventory inv = usingObject.GetComponentInChildren<Inventory>();
                     if (inv != null)
                     {
                         inv.RemoveCurrentHeldItem();
-                        Debug.Log("Grew potion used");
 
                     }
+                    Destroy(this.gameObject);
+
                 }
             }
             //No need for any work around if not being held by player
@@ -54,6 +61,8 @@ public class EnlargingPotion : GrababbleItem, IUsableItem
             {
                if(scaling.Grow())
                 {
+                    await Task.Delay((int)(drinkTime * 1000));
+
                     Destroy(this);
                 }    
             }
