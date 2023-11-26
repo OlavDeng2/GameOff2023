@@ -247,7 +247,9 @@ public class Inventory : MonoBehaviour
                         grabbingItem.Grab(itemPosition);
                         heldItem = grabbingItem;
                         audioSource.PlayOneShot(grabSound);
-
+                        grabItemImage.SetActive(false);
+                        //Show UI that you can throw item
+                        throwItemImage.SetActive(true);
                     }
                 }
 
