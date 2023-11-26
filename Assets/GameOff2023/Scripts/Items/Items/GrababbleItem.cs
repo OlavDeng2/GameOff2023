@@ -17,9 +17,11 @@ public class GrababbleItem : Item
 
     [SerializeField]
     private float throwForce;
-    [SerializeField]
-    private List<Collider> colliders;
+    
+    private List<Collider> colliders = new List<Collider>();
     private Rigidbody rigidbody;
+
+    private List<Collider> collidingObjectsWhileHeld = new List<Collider>();
 
     [Header("Audio")]
     [HideInInspector]
@@ -56,10 +58,16 @@ public class GrababbleItem : Item
         rigidbody.isKinematic = true;
 
         audioSource.PlayOneShot(grabItemAudio);
+
+        //Base collider used for trigger detection, which will be later used to see if you are allowed to drop item
+        colliders[0].enabled = true;
+        colliders[0].isTrigger = true;
     }
 
-    virtual public void Drop()
+    virtual public bool Drop()
     {
+        //Dont allow a drop if colliding with other objects
+        if (collidingObjectsWhileHeld.Count > 0) return false; 
         audioSource.PlayOneShot(dropItemAudio);
 
         this.transform.parent = null;
@@ -68,12 +76,28 @@ public class GrababbleItem : Item
             col.enabled = true;
         }
         rigidbody.isKinematic = false;
+
+        colliders[0].isTrigger = false;
+
+        return true;
     }
 
-    virtual public void Throw()
+    virtual public bool Throw()
     {
-        Drop();
-        this.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce);
+        if(Drop())
+        {
+            this.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce);
+            return true;
+        }
+        return false;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        collidingObjectsWhileHeld.Add(other);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        collidingObjectsWhileHeld.Remove(other);
 
     }
 }

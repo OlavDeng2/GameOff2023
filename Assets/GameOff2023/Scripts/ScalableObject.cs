@@ -20,7 +20,7 @@ public class ScalableObject : MonoBehaviour
     public Scale currentScale = Scale.Medium;
 
     [SerializeField]
-    private AudioClip failToGrowAudio;
+    private AudioClip failToScaleAudio;
     private AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -51,6 +51,7 @@ public class ScalableObject : MonoBehaviour
                 break;
             case Scale.Small:
                 //smallest scale, can't do anything
+                audioSource.PlayOneShot(failToScaleAudio);
                 break;
         }
     }
@@ -61,7 +62,7 @@ public class ScalableObject : MonoBehaviour
         //TODO: Return false to make sure that potion doesnt get used up if not able to grow
         if (!canGrow)
         {
-            //audioSource.PlayOneShot(failToGrowAudio);
+            audioSource.PlayOneShot(failToScaleAudio);
             return;
         }
 
@@ -78,6 +79,7 @@ public class ScalableObject : MonoBehaviour
 
             case Scale.Big:
                 //biggest scale, can't do anything
+                audioSource.PlayOneShot(failToScaleAudio);
                 break;
         }
     }
