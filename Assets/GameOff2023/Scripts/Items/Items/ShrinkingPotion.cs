@@ -4,7 +4,9 @@ using UnityEngine;
 using StarterAssets;
 public class ShrinkingPotion : GrababbleItem, IUsableItem
 {
-    //TODO: Use and fail to use sound
+    //TODO: fail to use sound
+    [SerializeField]
+    private AudioClip useAudio;
     public void Use(GameObject usingObject)
     {
         ScalableObject scaling = usingObject.GetComponent<ScalableObject>();
@@ -15,6 +17,7 @@ public class ShrinkingPotion : GrababbleItem, IUsableItem
         }
         else if(scaling != null)
         {
+            audioSource.PlayOneShot(useAudio);
             Transform currentParent = this.transform.parent;
             //Is being held by player
             FirstPersonController fpc = GetComponentInParent<FirstPersonController>();
@@ -41,7 +44,7 @@ public class ShrinkingPotion : GrababbleItem, IUsableItem
     {
         ScalableObject otherObject = collision.gameObject.GetComponent<ScalableObject>();
         if (otherObject == null) return;
-
+        audioSource.PlayOneShot(useAudio);
         otherObject.Shrink();
         Destroy(this.gameObject);
     }

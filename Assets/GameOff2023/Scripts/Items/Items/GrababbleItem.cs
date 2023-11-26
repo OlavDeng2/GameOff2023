@@ -22,13 +22,12 @@ public class GrababbleItem : Item
     private Rigidbody rigidbody;
 
     [Header("Audio")]
-    private AudioSource audioSource;
+    [HideInInspector]
+    public AudioSource audioSource;
     [SerializeField]
     private AudioClip grabItemAudio;
     [SerializeField]
     private AudioClip dropItemAudio;
-    [SerializeField]
-    private AudioClip throwItemAudio;
 
 
     // Start is called before the first frame update
@@ -55,10 +54,14 @@ public class GrababbleItem : Item
             col.enabled = false;
         }
         rigidbody.isKinematic = true;
+
+        audioSource.PlayOneShot(grabItemAudio);
     }
 
     virtual public void Drop()
     {
+        audioSource.PlayOneShot(dropItemAudio);
+
         this.transform.parent = null;
         foreach (Collider col in colliders)
         {
