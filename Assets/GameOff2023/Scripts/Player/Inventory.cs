@@ -88,7 +88,6 @@ public class Inventory : MonoBehaviour
 
             if (currentlyLookingAt != null)
             {
-                Debug.Log("Currently looking at item");
                 //if Item, check if grabable or usable.
                 if(currentlyLookingAt as GrababbleItem != null)
                 {
@@ -115,7 +114,6 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            Debug.Log("No longer looking at item");
             useItemImage.SetActive(false);
             grabItemImage.SetActive(false);
         }
@@ -172,16 +170,6 @@ public class Inventory : MonoBehaviour
                 //Grab item currently being raycasted at
                 GrababbleItem grabbingItem = currentlyLookingAt as GrababbleItem;
 
-                //Hide grab item UI
-                grabItemImage.SetActive(false);
-                //Show UI that you can throw item
-                throwItemImage.SetActive(true);
-                //show UI that you can use item
-                if(grabbingItem as IUsableItem != null)
-                {
-                    useItemImage.SetActive(true);
-                }
-
 
                 //Get current scale of grabable item. Get current scale of player
                 //Check if player is allowed to grab item at that scale
@@ -196,6 +184,15 @@ public class Inventory : MonoBehaviour
                                 grabbingItem.Grab(itemPosition);
                                 heldItem = grabbingItem;
                                 audioSource.PlayOneShot(grabSound);
+                                //Hide grab item UI
+                                grabItemImage.SetActive(false);
+                                //Show UI that you can throw item
+                                throwItemImage.SetActive(true);
+                                //show UI that you can use item
+                                if (grabbingItem as IUsableItem != null)
+                                {
+                                    useItemImage.SetActive(true);
+                                }
 
                             }
                             break;
@@ -205,6 +202,15 @@ public class Inventory : MonoBehaviour
                                 grabbingItem.Grab(itemPosition);
                                 heldItem = grabbingItem;
                                 audioSource.PlayOneShot(grabSound);
+                                //Hide grab item UI
+                                grabItemImage.SetActive(false);
+                                //Show UI that you can throw item
+                                throwItemImage.SetActive(true);
+                                //show UI that you can use item
+                                if (grabbingItem as IUsableItem != null)
+                                {
+                                    useItemImage.SetActive(true);
+                                }
 
                             }
                             break;
@@ -214,6 +220,15 @@ public class Inventory : MonoBehaviour
                                 grabbingItem.Grab(itemPosition);
                                 heldItem = grabbingItem;
                                 audioSource.PlayOneShot(grabSound);
+                                //Hide grab item UI
+                                grabItemImage.SetActive(false);
+                                //Show UI that you can throw item
+                                throwItemImage.SetActive(true);
+                                //show UI that you can use item
+                                if (grabbingItem as IUsableItem != null)
+                                {
+                                    useItemImage.SetActive(true);
+                                }
 
                             }
                             break;

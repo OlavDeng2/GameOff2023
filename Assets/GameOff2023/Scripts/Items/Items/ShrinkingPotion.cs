@@ -4,10 +4,9 @@ using UnityEngine;
 using StarterAssets;
 public class ShrinkingPotion : GrababbleItem, IUsableItem
 {
-
-    public override void Use(GameObject usingObject)
+    //TODO: Use and fail to use sound
+    public void Use(GameObject usingObject)
     {
-        base.Use(usingObject);
         ScalableObject scaling = usingObject.GetComponent<ScalableObject>();
         if(scaling == null)
         {
