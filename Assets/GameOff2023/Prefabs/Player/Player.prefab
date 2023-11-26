@@ -2983,7 +2983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b773545d4f0dc8649a2cb9dd97084198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canGrow: 0
+  canGrow: 1
   smallScale: {x: 0.125, y: 0.125, z: 0.125}
   midScale: {x: 0.25, y: 0.25, z: 0.25}
   bigScale: {x: 0.5, y: 0.5, z: 0.5}
