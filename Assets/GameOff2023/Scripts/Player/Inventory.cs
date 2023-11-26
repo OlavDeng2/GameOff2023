@@ -132,7 +132,6 @@ public class Inventory : MonoBehaviour
             if(usableItem != null)
             {
                 usableItem.Use(owningPlayer);
-                usableItem.Use(owningPlayer);
             }
 
 

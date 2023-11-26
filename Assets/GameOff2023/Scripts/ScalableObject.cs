@@ -62,6 +62,10 @@ public class ScalableObject : MonoBehaviour
     {
         //TODO: Give player some feedback about not being able to grow in size in this area
         //TODO: Return false to make sure that potion doesnt get used up if not able to grow
+        if(audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
         if (!canGrow)
         {
             audioSource.PlayOneShot(failToScaleAudio);

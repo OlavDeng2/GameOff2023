@@ -59,7 +59,7 @@ public class ShrinkingPotion : GrababbleItem, IUsableItem
                 {
                     await Task.Delay((int)(drinkTime * 1000));
                     //Remove when used
-                    Destroy(this);
+                    Destroy(this.gameObject);
                 }
             }
 

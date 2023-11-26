@@ -63,7 +63,7 @@ public class EnlargingPotion : GrababbleItem, IUsableItem
                 {
                     await Task.Delay((int)(drinkTime * 1000));
 
-                    Destroy(this);
+                    Destroy(this.gameObject);
                 }    
             }
 
