@@ -21,6 +21,7 @@ public class GrababbleItem : Item
     private List<Collider> colliders = new List<Collider>();
     private Rigidbody rigidbody;
 
+    [SerializeField]
     private List<Collider> collidingObjectsWhileHeld = new List<Collider>();
 
     [Header("Audio")]
@@ -47,6 +48,7 @@ public class GrababbleItem : Item
     }
     virtual public void Grab(Transform newParent)
     {
+        
         this.transform.parent = newParent;
         this.transform.localPosition = new Vector3(0, 0, 0);
         this.transform.localRotation = Quaternion.identity;
@@ -68,7 +70,9 @@ public class GrababbleItem : Item
     virtual public bool Drop()
     {
         //Dont allow a drop if colliding with other objects
-        if (collidingObjectsWhileHeld.Count > 0) return false; 
+        if (collidingObjectsWhileHeld.Count > 0) return false;
+
+        
         audioSource.PlayOneShot(dropItemAudio);
 
         this.transform.parent = null;
@@ -95,14 +99,14 @@ public class GrababbleItem : Item
     private void OnTriggerEnter(Collider other)
     {
         //Dont do anything if place point
-        if (other.GetComponent<ItemPlacePoint>() != null) return;
+        if (other.GetComponent<ItemPlacePoint>() != null || !isHeld) return;
         collidingObjectsWhileHeld.Add(other);
         
     }
     private void OnTriggerExit(Collider other)
     {
         //Dont do anything if place point
-        if (other.GetComponent<ItemPlacePoint>() != null) return;
+        if (other.GetComponent<ItemPlacePoint>() != null || !isHeld) return;
         collidingObjectsWhileHeld.Remove(other);
 
     }
