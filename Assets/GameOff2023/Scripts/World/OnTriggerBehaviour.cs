@@ -14,6 +14,13 @@ public class OnTriggerBehaviour : MonoBehaviour
     {
         if(other.gameObject == gameObjectToCheck )
         {
+            if(other.gameObject.GetComponent<GrababbleItem>()!= null)
+            {
+                if(other.gameObject.GetComponent<GrababbleItem>().isHeld)
+                {
+                    return;
+                }
+            }
             OnTrigger?.Invoke();
         }
     }
