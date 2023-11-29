@@ -1365,7 +1365,7 @@ GameObject:
   - component: {fileID: 593417448}
   - component: {fileID: 593417450}
   - component: {fileID: 593417449}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Image - End Comic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2110,6 +2110,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ExitStairs
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c66ebe133d89094a968626d72e69b1a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3166,7 +3171,7 @@ GameObject:
   - component: {fileID: 1188439250}
   - component: {fileID: 1188439249}
   - component: {fileID: 1188439248}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Shelf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3182,7 +3187,7 @@ Transform:
   m_GameObject: {fileID: 1188439246}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.198, y: 1.233, z: -2.037}
+  m_LocalPosition: {x: -3.198, y: 1.005, z: -2.037}
   m_LocalScale: {x: 1, y: 0.13004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5183,7 +5188,7 @@ GameObject:
   - component: {fileID: 6729935944493311525}
   - component: {fileID: 1312930896825735702}
   - component: {fileID: 21582983790002919}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5416,10 +5421,20 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 407448453}
+    - target: {fileID: 981964899386766343, guid: 38c067e177d195547ab2fef8b9bb9ea2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2114774533430121138, guid: 38c067e177d195547ab2fef8b9bb9ea2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 154
+      objectReference: {fileID: 0}
+    - target: {fileID: 2367082738899869272, guid: 38c067e177d195547ab2fef8b9bb9ea2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2367082738899869272, guid: 38c067e177d195547ab2fef8b9bb9ea2,
         type: 3}
@@ -5456,12 +5471,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelExit
       objectReference: {fileID: 0}
+    - target: {fileID: 3917771048078074545, guid: 38c067e177d195547ab2fef8b9bb9ea2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215043377151997683, guid: 38c067e177d195547ab2fef8b9bb9ea2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5965991762675611543, guid: 38c067e177d195547ab2fef8b9bb9ea2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6650654960948635003, guid: 38c067e177d195547ab2fef8b9bb9ea2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7047348154906573957, guid: 38c067e177d195547ab2fef8b9bb9ea2,
         type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
       objectReference: {fileID: -3646609285679023654, guid: 0e46f781685998d44999c2b83170e946,
         type: 2}
+    - target: {fileID: 8032281800258544625, guid: 38c067e177d195547ab2fef8b9bb9ea2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427042288421468233, guid: 38c067e177d195547ab2fef8b9bb9ea2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8481483357660369713, guid: 38c067e177d195547ab2fef8b9bb9ea2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
